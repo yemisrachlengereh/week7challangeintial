@@ -1,10 +1,17 @@
 package me.afua.thymeleafsecdemo.entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 public class UserRole {
+    public UserRole() {
+    }
+
+    public UserRole(String role) {
+        this.role=role;
+    }
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -42,4 +49,6 @@ public class UserRole {
     public void setUsers(Set<UserData> users) {
         this.users = users;
     }
+
+
 }

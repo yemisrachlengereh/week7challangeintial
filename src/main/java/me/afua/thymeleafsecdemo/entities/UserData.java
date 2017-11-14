@@ -4,10 +4,19 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class UserData {
+    public UserData(){
+
+       this.roles = new HashSet<> ();
+
+    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -96,5 +105,10 @@ public class UserData {
 
     public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(UserRole theRole){
+    roles.add ( theRole );
+
     }
 }

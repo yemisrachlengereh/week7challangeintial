@@ -19,7 +19,7 @@ public class MainController {
 
     @RequestMapping("/")
     public String showMainPage(Principal p) {
-
+            //Principal allows you to store to name you except user to have store object parameters in repository
         return "index";
     }
 

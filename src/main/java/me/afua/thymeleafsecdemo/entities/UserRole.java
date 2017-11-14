@@ -10,9 +10,12 @@ public class UserRole {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
+
+    //Can only have one role or use @Unique mean the sting shouldnt be replicated inside database in any other row
     @Column(unique=true)
     private String role;
 
+    //Telling you what its is mapped by looked in the entity of this type USERDATE and find the table to get the
     @ManyToMany(mappedBy = "roles",fetch=FetchType.LAZY)
     private Set<UserData> users;
 

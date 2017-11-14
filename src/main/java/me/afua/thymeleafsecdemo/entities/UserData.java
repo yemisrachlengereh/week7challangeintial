@@ -27,7 +27,10 @@ public class UserData {
 
     private String username;
 
+
+    //The relationship many user's can have many roles each person can have one or more or zero
     @ManyToMany(fetch = FetchType.EAGER)
+    //Join Coulnm one it will save for from this table for realtionship to role in database
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),inverseJoinColumns = @JoinColumn(name="role_id"))
     private Set<UserRole> roles;
 

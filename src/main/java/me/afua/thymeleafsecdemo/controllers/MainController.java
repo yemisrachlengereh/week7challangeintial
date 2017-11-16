@@ -37,13 +37,14 @@ public class MainController {
         return "pageone";
     }
 
-    @RequestMapping(value="/register", method = RequestMethod.GET)
+    @GetMapping("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("user", new UserData ());
+        model.addAttribute("pagenumber","4");
         return "registration";
     }
 
-    @RequestMapping(value="/register", method = RequestMethod.POST)
+    @PostMapping("/register")
     public String processRegistrationPage(
             @Valid @ModelAttribute("user") UserData user,
             BindingResult result,
@@ -77,6 +78,8 @@ public class MainController {
         model.addAttribute("pagenumber","3");
         return "pagethree";
     }
+
+
 
 
 }

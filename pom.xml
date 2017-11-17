@@ -80,13 +80,7 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 		</dependency>
-		<!--Postgresql-->
-		<!--<dependency>-->
-			<!--<groupId>org.postgresql</groupId>-->
-			<!--<artifactId>postgresql</artifactId>-->
-			<!--<version>9.4.1208</version>-->
-		<!--</dependency>-->
-	</dependencies>
+		</dependencies>
 
 	<build>
 		<plugins>

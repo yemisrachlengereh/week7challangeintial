@@ -1,5 +1,6 @@
 package me.afua.thymeleafsecdemo.security;
 
+import me.afua.thymeleafsecdemo.repositories.JobseekerRepository;
 import me.afua.thymeleafsecdemo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import static org.hibernate.criterion.Restrictions.and;
+
 //@Configuration and@EnableWebSecurity This indicates to the compiler that the file is a configuration file and
 //        Spring Security is enabled for the application.
 //
@@ -24,6 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private JobseekerRepository employeeRepository;
 
     @Override
     //Creating a bean to authiticate user and access in spring dont ned to know in depth
@@ -41,17 +47,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**","/js/**","/img/**","/h2-console/**","/register").permitAll()
                 .antMatchers("/").access("hasAuthority('STUDENT') or hasAuthority('TEACHER')")
                 .antMatchers("/admin","/pagethree").access("hasAuthority('TEACHER')")
+             .antMatchers("/pagetwo","/pageone").access("hasAuthority('STUDENT')or hasAuthority('TEACHER')")
                 //Want to see all different levels must alow secuirty to access these folders and make these accessible to anyone ion the browser
                 .anyRequest().authenticated()
                 .and()
+
                 .formLogin().loginPage("/login").permitAll()
                 .and()
-                .formLogin().defaultSuccessUrl("/pagethree",true)//Ading chaining for allhttp sercueity
+//                .formregister().defaultSuccessUrl("/register",true)
+//                .formLogin().defaultSuccessUrl("/pagethree",true)//Ading chaining for allhttp sercueity
                 //Allows sucessful logout
-                .and()
+//                .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login").permitAll().permitAll();
+        http
+                .csrf().disable();
+        http
+                .headers().frameOptions().disable();
 
 
     }

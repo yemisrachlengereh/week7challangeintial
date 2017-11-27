@@ -1,9 +1,9 @@
 package me.afua.thymeleafsecdemo.controllers;
 
+import me.afua.thymeleafsecdemo.entities.Jobseeker;
 import me.afua.thymeleafsecdemo.entities.UserData;
 import me.afua.thymeleafsecdemo.entities.UserService;
-import me.afua.thymeleafsecdemo.repositories.RoleRepository;
-import org.apache.catalina.User;
+import me.afua.thymeleafsecdemo.repositories.JobseekerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,18 +18,18 @@ public class MainController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/")
-    public String showMainPage(Principal p) {
-            //Principal allows you to store to name you except user to have store object parameters in repository
 
-        return "index";
-    }
+    @Autowired
+   private JobseekerRepository jobseekerRepository;
+
 
     @RequestMapping("/login")
     public String login()
     {
         return "login";
     }
+
+
     @RequestMapping("/pageone")
     public String showPageOne(Model model)
     {
@@ -37,7 +37,12 @@ public class MainController {
         model.addAttribute("pagenumber","1");
         return "pageone";
     }
+    @RequestMapping("/")
+    public String showMainPage(Principal p) {
+        //Principal allows you to store to name you except user to have store object parameters in repository
 
+        return "index";
+    }
     @GetMapping("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("user", new UserData ());
@@ -59,28 +64,66 @@ public class MainController {
             userService.saveUserData(user);
             model.addAttribute("message", "User Account Successfully Created");
         }
-        return "index";
+        return "login";
+    }
+
+//now its jobseeker
+    @GetMapping("/jobseeker")
+    public String jobseekerForm(Model model) {
+        model.addAttribute("jobseeker", new Jobseeker());
+        return "jobseekerform";
+
+    }
+    @PostMapping("/jobseeker")
+    public String processEmployePage(
+            @Valid @ModelAttribute("jobseeker") Jobseeker jobseeker,
+            BindingResult result,
+            Model model){
+
+        model.addAttribute("jobseeker", jobseeker);
+
+        if (result.hasErrors()) {
+            return "jobseekerform";
+        } else {
+            jobseekerRepository.save(jobseeker);
+            model.addAttribute("message", "User Successfully Insert there information");
+        }
+        return "show";
     }
 
 
+    @PostMapping("/process")
+    public String processForm(@Valid Jobseeker jobseeker, BindingResult result) {
+        if (result.hasErrors()) {
+            return "jobseekerform";
+        }
+        jobseekerRepository.save(jobseeker);
+        return "redirect:/";
+    }
 
-    @RequestMapping("/pagetwo")
-    public String showPageTwo(Model model)
+    @RequestMapping("detail/{id}")
+    public String showjobseeker(@PathVariable("id") long id, Model model){
+        model.addAttribute("jobseeker",jobseekerRepository.findOne(id));
+        return"Show";
+    }
+
+    @GetMapping("/search")
+    public String getSearch()
     {
-        model.addAttribute("title","Second Page");
-        model.addAttribute("pagenumber","2");
-        return "pagetwo";
+        return "search";
     }
 
-    @RequestMapping("/pagethree")
-    public String showPageThree(Model model)
-    {
-        model.addAttribute("title","Third Page");
-        model.addAttribute("pagenumber","3");
-        return "pagethree";
-    }
-
-
-
-
+//    @PostMapping("/search")
+//    public String showSearchResults(HttpServletRequest request, Model model)
+//    {
+//        //Get the search string from the result form
+//        String searchString = request.getParameter("search");
+//        model.addAttribute("search",searchString);
+//        model.addAttribute("employees",employeeRepository.findOneBySkillContainingIgnoreCase(searchString));
+//        return "list";
+//    }
 }
+
+
+
+

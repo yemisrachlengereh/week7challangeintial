@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head th:replace="index::headstuff">
+    <meta charset="utf-8" />
+    <title>${title}</title>
+</head>
+<body>
+    <div class="container">
+            <h4>Fill your information</h4>
+        <form action="#" th:action ="@{/process}" th:object="${jobseeker}" method="post">
+            <input type="hidden" th:field="*{id}" />
+                Full_name <mark><strong>
+                        <span th:if="${#fields.hasErrors('full_name')}"
+                              th:errors="*{full_name}">Full_Name Error</span></strong></mark>
+                <input type="text" id="fullName" placeholder="full_name"
+                       th:field="*{full_name}" /><br />
+                Email <mark><strong>
+                        <span th:if="${#fields.hasErrors('email')}"
+                              th:errors="*{email}">Email Error</span></strong></mark>
+                <input type="text" id="email" placeholder="Email"
+                       th:field="*{email}" /><br />
+
+
+                Level_of_education <mark><strong>
+                        <span th:if="${#fields.hasErrors('level_of_education')}"
+                              th:errors="*{level}">Level_of_education Error</span></strong></mark>
+                <input type="text" id="level_of_education" placeholder="level_of_education"
+                       th:field="*{level_of_education}" /><br />
+
+                Field_of_study <mark><strong>
+                        <span th:if="${#fields.hasErrors('field_of_study')}"
+                              th:errors="*{field}">Field_of_study Error</span></strong></mark>
+                <input type="text" id="field" placeholder="field_of_study"
+                       th:field="*{field_of_study}" /><br />
+
+                Where_you_study <mark><strong>
+                        <span th:if="${#fields.hasErrors('wherestudy')}"
+                              th:errors="*{wherestudy}">Wherestudy Error</span></strong></mark>
+                <input type="text" id="where" placeholder="Wherestudy"
+                       th:field="*{wherestudy}" /><br />
+
+                When_you_study <mark><strong>
+                        <span th:if="${#fields.hasErrors('whenstudy')}"
+                              th:errors="*{whenstudy}">Whenstudy Error</span></strong></mark>
+                <input type="text" id="when" placeholder="Whenstudy"
+                       th:field="*{whenstudy}" /><br />
+
+                Position <mark><strong>
+                        <span th:if="${#fields.hasErrors('position')}"
+                              th:errors="*{position}">Position Error</span></strong></mark>
+                <input type="text" id="position" placeholder="Position"
+                       th:field="*{position}" /><br />
+
+                Where_did_you_work <mark><strong>
+                        <span th:if="${#fields.hasErrors('wherework')}"
+                              th:errors="*{wherework}">Where Error</span></strong></mark>
+                <input type="text" id="wherework" placeholder="Wherework"
+                       th:field="*{wherework}" /><br />
+
+                When_did_you_work <mark><strong>
+                        <span th:if="${#fields.hasErrors('whenwork')}"
+                              th:errors="*{when_work}">Whenwork Error</span></strong></mark>
+                <input type="text" id="whenwoork" placeholder="Whenwork"
+                       th:field="*{whenwork}" /><br />
+
+                Duty <mark><strong>
+                        <span th:if="${#fields.hasErrors('duty')}"
+                              th:errors="*{duty}">Duty Error</span></strong></mark>
+                <input type="text" id="duty" placeholder="Duty"
+                       th:field="*{duty}" /><br />
+                Field_of_skill <mark><strong>
+                        <span th:if="${#fields.hasErrors('field_of_skill')}"
+                              th:errors="*{field_of_skill}">Field_of_skill Error</span></strong></mark>
+                <input type="text" id="field_of_skill" placeholder="Field_of_skill"
+                       th:field="*{field_of_skill}" /><br />
+
+                Level_of_skill <mark><strong>
+                        <span th:if="${#fields.hasErrors('level_of_skill')}"
+                              th:errors="*{level_of_skill}">Level_of_skill Error</span></strong></mark>
+                <input type="text" id="level_of_skill" placeholder="Level_of_skill"
+                       th:field="*{level_of_skill}" /><br />
+                <button type="submit" class="btn btn-default">Submit</button>
+
+ </form>
+        </div>
+
+    </body>
+</html>

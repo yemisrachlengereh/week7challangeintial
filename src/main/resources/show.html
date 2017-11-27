@@ -1,0 +1,31 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns="ww.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<a href="/">Show all pets</a><br />
+Title:<span th:text="${jobseeker.Fullname}" ></span><br />
+Age:<span th:text="${jobseeker.Email}" ></span><br />
+Breed:<span th:text="${jobseeker.Level_of_education}" ></span><br/>
+Colour:<span th:text="${jobseeker.Field_of_study}"></span><br/>
+Type_of_animal:<span th:text="${jobseeker.Wherestudy}"></span><br/>
+Distingushing_features:<p th:text="${jobseeker.Whenstudy}"></p>
+Owner_contactnumber:<span th:text="${jobseeker.Wherework}"></span><br/>
+Distingushing_features:<p th:text="${jobseeker.Position}"></p>
+Owner_contactnumber:<span th:text="${jobseeker.Whenwork}"></span><br/>
+Distingushing_features:<p th:text="${jobseeker.Duty}"></p>
+Owner_contactnumber:<span th:text="${jobseeker.Field_of_skill}"></span><br/>
+Distingushing_features:<p th:text="${jobseeker.Level_of_skill}"></p>
+<a th:href="@{/delete/{id}(id=${pet.id})}">Delete this pet record</a>
+</body>
+</html>
+
+
+
+
+

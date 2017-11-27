@@ -1,5 +1,7 @@
 package me.afua.thymeleafsecdemo.entities;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,14 +13,46 @@ public class Jobseeker {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private long id;
-@NotNull
+@NotEmpty
 private String duty;
 
-@NotNull
-private String field_of_skill;
+@NotEmpty
+private String fullname;
 
-@NotNull
-private String level_of_skill;
+
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+
+
+    public String getFieldofstudy() {
+        return fieldofstudy;
+
+    }
+
+    public void setFieldofstudy(String fieldofstudy) {
+        this.fieldofstudy = fieldofstudy;
+    }
+
+    public String getLevelofstudy() {
+        return levelofstudy;
+    }
+
+    public void setLevelofstudy(String levelofstudy) {
+        this.levelofstudy = levelofstudy;
+    }
+
+    @NotEmpty
+
+private String levelofstudy;
+
+
 
     public String getDuty() {
         return duty;
@@ -28,41 +62,23 @@ private String level_of_skill;
         this.duty = duty;
     }
 
-    public String getField_of_skill() {
-        return field_of_skill;
-    }
+    @NotEmpty
+    private String fieldofstudy;
 
-    public void setField_of_skill(String field_of_skill) {
-        this.field_of_skill = field_of_skill;
-    }
+    @NotEmpty
+    private String fieldofskill;
 
-    public String getLevel_of_skill() {
-        return level_of_skill;
-    }
+    @NotEmpty
+    private String levelofskill;
 
-    public void setLevel_of_skill(String level_of_skill) {
-        this.level_of_skill = level_of_skill;
-    }
 
-    @NotNull
-        private String full_name;
+
 
          @NotNull
          private String email;
 
-    public String getFull_name() {
-        return full_name;
-    }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
-    }
 
-    @NotNull
-         private String level_of_education;
-
-         @NotNull
-         private String field_of_study;
 
          @NotNull
          private String wherestudy;
@@ -84,21 +100,8 @@ private String level_of_skill;
         this.email = email;
     }
 
-    public String getLevel_of_education() {
-        return level_of_education;
-    }
 
-    public void setLevel_of_education(String level_of_education) {
-        this.level_of_education = level_of_education;
-    }
 
-    public String getField_of_study() {
-        return field_of_study;
-    }
-
-    public void setField_of_study(String field_of_study) {
-        this.field_of_study = field_of_study;
-    }
 
     public String getWherestudy() {
         return wherestudy;
@@ -138,6 +141,22 @@ private String level_of_skill;
 
     public void setWhenwork(String whenwork) {
         this.whenwork = whenwork;
+    }
+
+    public String getFieldofskill() {
+        return fieldofskill;
+    }
+
+    public void setFieldofskill(String fieldofskill) {
+        this.fieldofskill = fieldofskill;
+    }
+
+    public String getLevelofskill() {
+        return levelofskill;
+    }
+
+    public void setLevelofskill(String levelofskill) {
+        this.levelofskill = levelofskill;
     }
 
     @NotNull

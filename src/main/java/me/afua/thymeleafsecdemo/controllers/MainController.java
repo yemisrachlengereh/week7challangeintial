@@ -20,33 +20,23 @@ public class MainController {
 
 
     @Autowired
-   private JobseekerRepository jobseekerRepository;
+    private JobseekerRepository jobseekerRepository;
 
 
     @RequestMapping("/login")
-    public String login()
-    {
+    public String login() {
         return "login";
     }
 
-
-    @RequestMapping("/pageone")
-    public String showPageOne(Model model)
-    {
-        model.addAttribute("title","First Page");
-        model.addAttribute("pagenumber","1");
-        return "pageone";
-    }
     @RequestMapping("/")
-    public String showMainPage(Principal p) {
-        //Principal allows you to store to name you except user to have store object parameters in repository
-
+    public String index() {
         return "index";
     }
+
     @GetMapping("/register")
-    public String showRegistrationPage(Model model){
-        model.addAttribute("user", new UserData ());
-        model.addAttribute("pagenumber","4");
+    public String showRegistrationPage(Model model) {
+        model.addAttribute("user", new UserData());
+        model.addAttribute("pagenumber", "4");
         return "registration";
     }
 
@@ -54,7 +44,7 @@ public class MainController {
     public String processRegistrationPage(
             @Valid @ModelAttribute("user") UserData user,
             BindingResult result,
-            Model model){
+            Model model) {
 
         model.addAttribute("user", user);
 
@@ -67,62 +57,60 @@ public class MainController {
         return "login";
     }
 
-//now its jobseeker
+    //now its jobseeker
+
+
+
+//    @RequestMapping("/list")
+//    public String listCourse(Model model) {
+//
+//        model.addAttribute("jobseekers", jobseekerRepository.findAll());
+//        return "list";
+//    }
+
     @GetMapping("/jobseeker")
     public String jobseekerForm(Model model) {
         model.addAttribute("jobseeker", new Jobseeker());
         return "jobseekerform";
 
     }
-    @PostMapping("/jobseeker")
-    public String processEmployePage(
-            @Valid @ModelAttribute("jobseeker") Jobseeker jobseeker,
-            BindingResult result,
-            Model model){
-
-        model.addAttribute("jobseeker", jobseeker);
-
-        if (result.hasErrors()) {
-            return "jobseekerform";
-        } else {
-            jobseekerRepository.save(jobseeker);
-            model.addAttribute("message", "User Successfully Insert there information");
-        }
-        return "show";
-    }
-
 
     @PostMapping("/process")
     public String processForm(@Valid Jobseeker jobseeker, BindingResult result) {
-        if (result.hasErrors()) {
+
+        if (result.hasErrors()) {System.out.print(result.toString());
             return "jobseekerform";
         }
         jobseekerRepository.save(jobseeker);
-        return "redirect:/";
+
+        return "show";
     }
 
     @RequestMapping("detail/{id}")
-    public String showjobseeker(@PathVariable("id") long id, Model model){
+    public String showJobseeker(@PathVariable("id") long id, Model model) {
+        model.addAttribute("jobseeker", jobseekerRepository.findOne(id));
+        return "show";
+
+    }
+      @RequestMapping("/jobseeker/search")
+    public String searchpeople(){
+        return"search";
+      }
+//      @PostMapping("/jobseeker/search")
+//    public String processSearchpeople(@RequestParam String searchedname,Model model){
+//        Iterable<Jobseeker> people=jobseekerRepository.findAllByFull_nameContainingIgnoreCase(searchedname ,searchedname);
+//        model.addAttribute("people",people);
+//        model.addAttribute("searchStr",searchedname);
+//        return "search";
+//      }
+      @RequestMapping("/recruiter/details/id")
+    public String showUserresume(@PathVariable("id") long id,Model model){
         model.addAttribute("jobseeker",jobseekerRepository.findOne(id));
-        return"Show";
-    }
+        return "show";
+      }
+        }
 
-    @GetMapping("/search")
-    public String getSearch()
-    {
-        return "search";
-    }
 
-//    @PostMapping("/search")
-//    public String showSearchResults(HttpServletRequest request, Model model)
-//    {
-//        //Get the search string from the result form
-//        String searchString = request.getParameter("search");
-//        model.addAttribute("search",searchString);
-//        model.addAttribute("employees",employeeRepository.findOneBySkillContainingIgnoreCase(searchString));
-//        return "list";
-//    }
-}
 
 
 

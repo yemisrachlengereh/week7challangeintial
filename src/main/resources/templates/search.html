@@ -1,20 +1,52 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-<head th:replace="index::headstuff">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
     <meta charset="UTF-8"/>
-    <title>Page Three</title>
+    <title>Title</title>
 </head>
-    <body>
-
-<div class="6-md-12"style="text-align: center">
-<h1>welcome !! </h1>
-    <h2>Find Your Employee</h2>
-    <h3>SEARCH THE SKILL THAT YOU LOOK FOR PLEASE!</h3>
-</div>
+<body>
 <div class="search"style="text-align: center">
-<form id="search-form" name="search" action="/products" method="get">
-    <input id="search-input" name="search" type="text">
-    <input src="path/to/image" name="search" type="image">
-</form></div>
-    </body>
+    <form id="search-form" name="search" action="/products" method="get">
+        <input id="search-input" name="search" type="text">
+        <input src="path/to/image" name="search" type="image">
+<table style="width: 100%;" >
+    <tr>
+
+        <th>Full_name</th>
+        <th>Email</th>
+        <!--<th>Level_of_education</th>-->
+        <!--<th>Field_of_study</th>-->
+        <!--<th>Wherestudy</th>-->
+        <!--<th>Whenstudy</th>-->
+        <!--<th>Position</th>-->
+        <!--<th>Wherework</th>-->
+        <!--<th>Whenwork</th>-->
+        <!--<th>Duty</th>-->
+        <th>Field_of_skill</th>
+        <!--<th>Level_of_skill</th>-->
+
+    </tr>
+    <tr th:each="jobseeker:${jobseekers}">
+        <td th:text="${jobseeker.Full_name}"></td>
+        <td th:text="${jobseeker.Email}"></td>
+        <!--<td th:text="${jobseeker.Level_of_education}"></td>-->
+        <!--<td th:text="${jobseeker.Field_of_study}"></td>-->
+        <!--<td th:text="${jobseeker.Wherestudy}"></td>-->
+        <!--<td th:text="${jobseeker.Whenstudy}"></td>-->
+        <!--<td th:text="${jobseeker.Position}"></td>-->
+        <!--<td th:text="${jobseeker.Wherework}"></td>-->
+        <!--<td th:text="${jobseeker.Whenwork}"></td>-->
+        <!--<td th:text="${jobseeker.duty}"></td>-->
+        <td th:text="${jobseeker.field_of_skill}"></td>
+        <!--<td th:text="${jobseeker.level_of_skill}"></td>-->
+        <td>
+            <a th:href="@{/detail/{id} (id=${jobseeker.id})}">Detail</a>
+        </td>
+    </tr>
+</table>
+    </form>
+</div>
+</body>
 </html>
+
+

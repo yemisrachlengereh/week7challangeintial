@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<span th:text="${jobseeker.fullname}"></span><br/>
+<span th:text="${jobseeker.email}"></span><br/>
+<h3>Education</h3>
+<span th:text="${jobseeker.levelofstudy}"></span> in
+<span th:text="${jobseeker.fieldofstudy}"></span><br/>
+<span th:text="${jobseeker.wherestudy}"></span>,
+<span th:text="${jobseeker.whenstudy}"></span><br/>
+<h3>Expriance</h3>
+<span th:text="${jobseeker.position}"></span><br/>
+<span th:text="${jobseeker.wherework}"></span>,
+<span th:text="${jobseeker.whenwork}"></span><br/>
+<span th:text="${jobseeker.duty}"></span><br/>
+<span th:text="${jobseeker.fieldofskill}"></span>,
+<span th:text="${jobseeker.levelofskill}"></span><br/>
+<a th:href="@{/}"><h3>Ok</h3> </a>
+</body>
+</html>
